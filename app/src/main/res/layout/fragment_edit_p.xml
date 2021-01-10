@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="editcycledata"
+            type="com.example.pdca.viewmodel.EditCycleViewModel"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_p">
+
+        <TextView
+            android:id="@+id/title_p_fragment_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="@string/title_p"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/edit_p_fragment_edit"
+            android:layout_width="300dp"
+            android:layout_height="110dp"
+            app:layout_constraintStart_toStartOf="@id/title_p_fragment_edit"
+            app:layout_constraintEnd_toEndOf="@id/title_p_fragment_edit"
+            app:layout_constraintTop_toBottomOf="@id/title_p_fragment_edit"
+            android:layout_marginTop="20dp"
+            android:text="@={editcycledata.editPlan}"
+            android:inputType="text"
+            android:maxLength="60"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/title_limit_fragment_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_p_fragment_edit"
+            android:layout_marginTop="20dp"
+            android:text="@string/title_limit"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/edit_limit_fragment_edit"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="@id/title_p_fragment_edit"
+            app:layout_constraintEnd_toEndOf="@id/title_p_fragment_edit"
+            app:layout_constraintTop_toBottomOf="@id/title_limit_fragment_edit"
+            android:layout_marginTop="20dp"
+            android:text="@={editcycledata.editLimit}"
+            android:inputType="text"
+            android:maxLength="60"
+            android:background="@color/white"/>
+
+
+        <Button
+            android:id="@+id/save_button_edit"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="20dp"
+            android:background="@drawable/rounded_save"
+            android:elevation="3dp"/>
+
+        <Button
+            android:id="@+id/image_save_buttton_edit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="@id/save_button_edit"
+            app:layout_constraintEnd_toEndOf="@id/save_button_edit"
+            app:layout_constraintTop_toTopOf="@id/save_button_edit"
+            app:layout_constraintBottom_toBottomOf="@id/save_button_edit"
+            android:background="@drawable/icon_save"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="cycledata"
+            type="com.example.pdca.roomdata.CycleData" />
+        <variable
+            name="lastcycledata"
+            type="com.example.pdca.roomdata.CycleData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_container_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <TextView
+                android:id="@+id/icon_p_dialog"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:padding="2dp"
+                android:text="@string/icon_p"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/rounded_p"/>
+
+            <TextView
+                android:id="@+id/plan_contents_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/sideLine_p_between_data_dialog"
+                app:layout_constraintStart_toEndOf="@id/icon_p_dialog"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="10dp"
+                android:text="@{cycledata.plan}" />
+
+            <TextView
+                android:id="@+id/title_limit_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/icon_p_dialog"
+                app:layout_constraintEnd_toStartOf="@id/limit_dialog"
+                app:layout_constraintTop_toBottomOf="@id/sideLine_p_between_data_dialog"
+                android:layout_margin="10dp"
+                android:text="@string/limit_text"/>
+
+            <TextView
+                android:id="@+id/limit_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/title_limit_dialog"
+                app:layout_constraintTop_toBottomOf="@id/sideLine_p_between_data_dialog"
+                android:layout_margin="10dp"
+                android:text="@{cycledata.limit}"/>
+
+            <TextView
+                android:id="@+id/title_cycleNumber_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/limit_dialog"
+                app:layout_constraintEnd_toStartOf="@id/cycleNumber_dialog"
+                app:layout_constraintTop_toTopOf="@id/sideLine_p_between_data_dialog"
+                android:layout_margin="10dp"
+                android:text="@string/number_of_cycle"/>
+
+            <TextView
+                android:id="@+id/cycleNumber_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/title_cycleNumber_dialog"
+                app:layout_constraintEnd_toEndOf="@id/sideLine_p_between_data_dialog"
+                app:layout_constraintTop_toTopOf="@id/sideLine_p_between_data_dialog"
+                android:layout_margin="10dp"
+                android:text="@{Integer.toString(cycledata.number_of_cycle)}"/>
+
+            <View
+                android:id="@+id/sideLine_p_between_data_dialog"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icon_p_dialog"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/thin_gray"
+                />
+
+
+
+            <TextView
+                android:id="@+id/icon_d_dialog"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/limit_dialog"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:padding="2dp"
+                android:text="@string/icon_d"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/rounded_d"/>
+
+            <TextView
+                android:id="@+id/do_contens_dialog"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                app:layout_constraintStart_toEndOf="@id/icon_d_dialog"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/icon_d_dialog"
+                android:paddingStart="10dp"
+                android:paddingEnd="30dp"
+                android:text="@{cycledata.doing}"
+                android:maxLength="80"/>
+
+            <View
+                android:id="@+id/sideLine_d_between_lastCycle"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintStart_toStartOf="@id/icon_d_dialog"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/do_contens_dialog"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="30dp"
+                android:background="@color/black"
+                />
+
+
+                <TextView
+                    android:id="@+id/title_last_cycle_dialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/sideLine_d_between_lastCycle"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/last_cycle_title"/>
+
+                <TextView
+                    android:id="@+id/icon_p_lastCycle_dialog"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_last_cycle_dialog"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/icon_p"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/rounded_p"/>
+
+                <TextView
+                    android:id="@+id/plan_contents_lastCycle_dialog"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintStart_toEndOf="@id/icon_p_lastCycle_dialog"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/icon_p_lastCycle_dialog"
+                    android:layout_marginStart="10dp"
+                    android:paddingEnd="30dp"
+                    android:text="@{lastcycledata.plan}"
+                    android:maxLength="60"/>
+
+                <TextView
+                    android:id="@+id/icon_c_lastCycle_dialog"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintStart_toStartOf="@id/icon_p_lastCycle_dialog"
+                    app:layout_constraintTop_toBottomOf="@id/plan_contents_lastCycle_dialog"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/icon_c"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/rounded_c"/>
+
+                <TextView
+                    android:id="@+id/check_contents_lastCycle_dialog"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    app:layout_constraintStart_toEndOf="@id/icon_c_lastCycle_dialog"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/icon_c_lastCycle_dialog"
+                    android:paddingEnd="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="@{lastcycledata.check}"
+                    android:maxLength="30"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

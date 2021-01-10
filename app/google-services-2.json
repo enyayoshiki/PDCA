@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "836075821053",
+    "project_id": "pdcacycle",
+    "storage_bucket": "pdcacycle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836075821053:android:ff7d1710c8d3c0e1c56b94",
+        "android_client_info": {
+          "package_name": "com.example.pdca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836075821053-pie9ep4fp1uuabbv0cc8shhii11ddms6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVJ1LCuPeQ4H_L7KNXNbNIyqhF4BZwgqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836075821053-pie9ep4fp1uuabbv0cc8shhii11ddms6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

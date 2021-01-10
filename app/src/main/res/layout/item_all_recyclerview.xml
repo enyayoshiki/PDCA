@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="cycledata"
+            type="com.example.pdca.roomdata.CycleData"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_allCycle_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/rounded_item_recyclerview">
+
+        <TextView
+            android:id="@+id/icon_p_item_all_recycreView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:padding="2dp"
+            android:text="@string/icon_p"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/rounded_p"/>
+
+        <TextView
+            android:id="@+id/plan_item_all_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@id/icon_p_item_all_recycreView"
+            app:layout_constraintEnd_toStartOf="@id/vertical_line_item_recyclerView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/side_line_item_recyclerView"
+            android:paddingTop="5dp"
+            android:layout_margin="5dp"
+            tools:text="@string/add_new_cycle"
+            android:text="@{cycledata.plan}"
+            android:maxLength="80"/>
+
+        <TextView
+            android:id="@+id/limit_item_all_recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/icon_p_item_all_recycreView"
+            app:layout_constraintTop_toBottomOf="@id/side_line_item_recyclerView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="10dp"
+            tools:text="@string/add_new_cycle"
+            android:text="@{cycledata.limit}"
+        />
+
+        <TextView
+            android:id="@+id/number_of_cycle_item_all_recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/vertical_line_item_recyclerView"
+            app:layout_constraintTop_toTopOf="@id/side_line_item_recyclerView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="80dp"
+            tools:text="@string/add_new_cycle"
+            android:text="@{Integer.toString(cycledata.number_of_cycle)}"/>
+
+        <View
+            android:id="@+id/side_line_item_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/vertical_line_item_recyclerView"
+            app:layout_constraintTop_toBottomOf="@id/icon_p_item_all_recycreView"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/thin_gray"
+            />
+
+
+        <View
+            android:id="@+id/vertical_line_item_recyclerView"
+            android:layout_width="1dp"
+            android:layout_height="55dp"
+            app:layout_constraintEnd_toStartOf="@id/show_contents_button_item_all_recyclerView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="10dp"
+            android:background="@color/black"
+            />
+
+        <Button
+            android:id="@+id/show_contents_button_item_all_recyclerView"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/show_contents"/>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
