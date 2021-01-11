@@ -23,43 +23,53 @@ class TestEditCycleViewModel : ViewModel() {
 
     private val cycleDataRepository = CycleDataRepository()
 
-    var cycleData = MutableLiveData<CycleData>()
     var isLoading = false
     var isNext = false
+    var editPlan = MutableLiveData<String>("")
+    var editLimit = MutableLiveData<String>("")
+    var editDoing = MutableLiveData<String>("")
+    var editCheck = MutableLiveData<String>("")
+    var editAction = MutableLiveData<String>("")
 
-    fun setCycleData(id: Int, number: Int) {
-        Timber.i("viewModel setCycleData")
-        if (!isLoading) {
-            viewModelScope.launch {
-                val cycleDataList = cycleDataRepository.loadCycleData()
-                cycleDataList.filter { it.cycleid == id && it.number_of_cycle == number }
-                    .forEach {
-                        cycleData.postValue(it)
-                    }
+    var editCycleData = CycleData(
+        plan = editPlan.value ?: "",
+        limit = editLimit.value ?: "",
+        doing = editDoing.value ?: "",
+        check = editCheck.value ?: "",
+        action = editAction.value ?: ""
+    )
+
+
+        fun setCycleData(id: Int, number: Int) {
+            Timber.i("viewModel setCycleData")
+            if (!isLoading) {
+                viewModelScope.launch {
+                    val cycleDataList = cycleDataRepository.loadCycleData()
+                    cycleDataList.filter { it.cycleid == id && it.number_of_cycle == number }
+                        .forEach {
+                            editPlan.postValue(it.plan)
+                            editLimit.postValue(it.limit)
+                            editDoing.postValue(it.doing)
+                            editCheck.postValue(it.check)
+                            editAction.postValue(it.action)
+                        }
+                    isLoading = true
+                }
             }
-            isLoading = true
         }
-    }
 
     fun updateCycleDate() {
-        val editCycleData = cycleData.value ?: CycleData()
         viewModelScope.launch {
             cycleDataRepository.updataCycleData(editCycleData)
         }
     }
 
     fun nextCycle() {
-        val editCycle = cycleData.value ?: CycleData()
         //(finishcycleを1にして完了したことにする)
-        editCycle.finishcycle++
+        editCycleData.finishcycle++
         viewModelScope.launch {
-            cycleDataRepository.updataCycleData(editCycle)
+            cycleDataRepository.updataCycleData(editCycleData)
         }
-    }
-
-    fun postValue(){
-        val editCycle = cycleData.value ?: CycleData()
-        cycleData.postValue(editCycle)
     }
 }
 

@@ -33,11 +33,14 @@ class ViewModelFactory_EditCycle(
 }
 
 //class TestViewModelFactory(
-//    cycleDataRepository: CycleDataRepository
+//    private val coroutineScope: CoroutineScope,
+//    private val context: Context
 //): ViewModelProvider.Factory {
 //    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 //        return TestEditCycleViewModel(
-//
+//            coroutineScope,
+//            context.applicationContext as Application,
+//            context
 //        ) as T
 //    }
 //}

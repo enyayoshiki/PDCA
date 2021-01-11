@@ -13,6 +13,7 @@ import com.example.pdca.databinding.FragmentEditABinding
 import com.example.pdca.databinding.FragmentEditCBinding
 import com.example.pdca.databinding.FragmentEditDBinding
 import com.example.pdca.databinding.FragmentEditPBinding
+import com.example.pdca.viewmodels.EditCycleViewModel
 import com.example.pdca.viewmodels.TestEditCycleViewModel
 import timber.log.Timber
 
@@ -40,10 +41,17 @@ class EditPlanFragment : Fragment(R.layout.fragment_edit_p) {
         //すでに存在しているデータを表示させる
         viewModel.apply {
             setCycleData(id, number)
-            cycleData.observe(viewLifecycleOwner, Observer {
+            editPlan.observe(viewLifecycleOwner, Observer {
                 it.apply {
                     isNext =
-                        plan.isNotEmpty() && limit.isNotEmpty() && doing.isNotEmpty() && check.isNotEmpty() && action.isNotEmpty()
+                        editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
+                }
+                Timber.i("viewModel isNext : $isNext")
+            })
+            editLimit.observe(viewLifecycleOwner, Observer {
+                it.apply {
+                    isNext =
+                        editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
                 }
                 Timber.i("viewModel isNext : $isNext")
             })
@@ -114,10 +122,10 @@ class EditDoFragment : Fragment(R.layout.fragment_edit_d) {
         }
 
         viewModel.apply {
-            cycleData.observe(viewLifecycleOwner, Observer {
+            editDoing.observe(viewLifecycleOwner, Observer {
                 it.apply {
                     isNext =
-                        plan.isNotEmpty() && limit.isNotEmpty() && doing.isNotEmpty() && check.isNotEmpty() && action.isNotEmpty()
+                        editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
                 }
                 Timber.i("viewModel isNext : $isNext")
             })
@@ -162,10 +170,11 @@ class EditCheckFragment : Fragment(R.layout.fragment_edit_c) {
             }
 
             viewModel.apply {
-                cycleData.observe(viewLifecycleOwner, Observer {
+
+                editCheck.observe(viewLifecycleOwner, Observer {
                     it.apply {
                         isNext =
-                            plan.isNotEmpty() && limit.isNotEmpty() && doing.isNotEmpty() && check.isNotEmpty() && action.isNotEmpty()
+                            editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
                     }
                     Timber.i("viewModel isNext : $isNext")
                 })
@@ -199,16 +208,16 @@ class EditActionFragment : Fragment(R.layout.fragment_edit_a) {
             lifecycleOwner = viewLifecycleOwner
 
             saveButtonEdit.setOnClickListener {
-                viewModel.postValue()
 //                viewModel.updateCycleDate()
 //                Toast.makeText(context, R.string.save_text, Toast.LENGTH_SHORT).show()
 //                MainActivity.startManiActivity(requireActivity())
             }
 
             viewModel.apply {
-                cycleData.observe(viewLifecycleOwner, Observer {
+                editAction.observe(viewLifecycleOwner, Observer {
                     it.apply {
-                        isNext = plan.isNotEmpty() && limit.isNotEmpty() && doing.isNotEmpty() && check.isNotEmpty() && action.isNotEmpty()
+                        isNext =
+                            editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
                     }
                     Timber.i("viewModel isNext : $isNext")
                 })

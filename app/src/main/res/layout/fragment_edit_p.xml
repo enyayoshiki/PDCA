@@ -38,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="@id/title_p_fragment_edit"
             app:layout_constraintTop_toBottomOf="@id/title_p_fragment_edit"
             android:layout_marginTop="20dp"
-            android:text="@={editcycledata.cycleData.plan}"
+            android:text="@={editcycledata.editPlan}"
             android:inputType="text"
             android:maxLength="60"
             android:background="@color/white"/>
@@ -64,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="@id/title_p_fragment_edit"
             app:layout_constraintTop_toBottomOf="@id/title_limit_fragment_edit"
             android:layout_marginTop="20dp"
-            android:text="@={editcycledata.cycleData.limit}"
+            android:text="@={editcycledata.editLimit}"
             android:inputType="text"
             android:maxLength="60"
             android:background="@color/white"/>
