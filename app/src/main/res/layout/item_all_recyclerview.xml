@@ -9,7 +9,7 @@
     <data>
         <variable
             name="cycledata"
-            type="com.example.pdca.roomdata.CycleData"/>
+            type="com.example.pdca.data.CycleData"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

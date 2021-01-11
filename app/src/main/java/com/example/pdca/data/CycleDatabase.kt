@@ -1,11 +1,9 @@
-package com.example.pdca.roomdata
+package com.example.pdca.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(entities=arrayOf(CycleData::class),version=1)// Databaseの内容を@Databaseで設定。UserクラスをDBに保存する。versionはデータの構造に変更があれば番号を上げていきます。
 abstract class CycleDatabase: RoomDatabase(){

@@ -1,4 +1,4 @@
-package com.example.pdca.activity
+package com.example.pdca.activities
 
 import android.content.Context
 import android.content.Intent

@@ -1,4 +1,4 @@
-package com.example.pdca.fragment
+package com.example.pdca.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -8,12 +8,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pdca.recyclerview_adapter.CycleRecyclerViewAdapter
+import com.example.pdca.adapters.recyclerviews.CycleRecyclerViewAdapter
 import com.example.pdca.R
-import com.example.pdca.roomdata.CycleData
-import com.example.pdca.viewmodel.CycleListViewModel
+import com.example.pdca.data.CycleData
+import com.example.pdca.viewmodels.CycleListViewModel
 import com.example.pdca.databinding.FragmentAllCycleBinding
-import com.example.pdca.viewmodel.ViewModelFactory_CycleList
+import com.example.pdca.viewmodels.ViewModelFactory_CycleList
 
 class AllCycleFragment: Fragment(R.layout.fragment_all_cycle) {
 
@@ -59,7 +59,12 @@ class AllCycleFragment: Fragment(R.layout.fragment_all_cycle) {
         viewModel.loadCycleData(tag)
 
         val manager = activity?.supportFragmentManager ?: return
-        customAdapter = CycleRecyclerViewAdapter(layoutInflater, cycleListSnapshot, manager)
+        customAdapter =
+            CycleRecyclerViewAdapter(
+                layoutInflater,
+                cycleListSnapshot,
+                manager
+            )
 
         layoutManager = LinearLayoutManager(
             requireContext(),

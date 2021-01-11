@@ -35,6 +35,7 @@
     <string name="cancel_text">Cancel</string>
     <string name="alart_edit_both">planと期日の両方を入力してください</string>
     <string name="save_text">変更内容を保存しました</string>
+    <string name="error_text">保存に失敗しました</string>
     <string name="save_and_next">編集内容を保存して次のPDCAサイクルを作成しますか？？</string>
     <string name="excute_add_new_cycle">新しいPDCAサイクルを作成しました。</string>
     <string name="ok">ok</string>

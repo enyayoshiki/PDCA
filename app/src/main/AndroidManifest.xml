@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
         <activity
-            android:name=".activity.MainActivity">
+            android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +22,8 @@
 
             </intent-filter>
         </activity>
-        <activity android:name=".activity.EditCycleActivity"/>
-        <activity android:name=".activity.ContensActivity"/>
+        <activity android:name=".activities.EditCycleActivity"/>
+        <activity android:name=".activities.ContensActivity"/>
     </application>
 
 </manifest>

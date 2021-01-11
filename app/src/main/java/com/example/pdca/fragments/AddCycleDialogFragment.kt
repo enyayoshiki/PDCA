@@ -1,4 +1,4 @@
-package com.example.pdca.fragment
+package com.example.pdca.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -7,16 +7,15 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.pdca.R
-import com.example.pdca.activity.MainActivity
+import com.example.pdca.activities.MainActivity
 import com.example.pdca.databinding.AddDialogBinding
 import com.example.pdca.extention.showToast
-import com.example.pdca.roomdata.CycleData
-import com.example.pdca.viewmodel.CycleListViewModel
-import com.example.pdca.viewmodel.ViewModelFactory_CycleList
+import com.example.pdca.data.CycleData
+import com.example.pdca.viewmodels.CycleListViewModel
+import com.example.pdca.viewmodels.ViewModelFactory_CycleList
 
 class AddCycleDialogFragment(private val cycleData: CycleData) : DialogFragment(){
 

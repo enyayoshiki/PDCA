@@ -1,10 +1,11 @@
-package com.example.pdca.fragment
+package com.example.pdca.adapters.viewpagers
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.pdca.R
+import com.example.pdca.fragments.AllCycleFragment
 
 class TabAdapter_MainActivity (fm: FragmentManager, private val context: Context) :
     FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
@@ -17,7 +18,9 @@ class TabAdapter_MainActivity (fm: FragmentManager, private val context: Context
 
     //Fragmentの配列
     override fun getItem(position: Int): Fragment {
-        return AllCycleFragment.newInstance(position)
+        return AllCycleFragment.newInstance(
+            position
+        )
     }
 
     // タブの名前を出力

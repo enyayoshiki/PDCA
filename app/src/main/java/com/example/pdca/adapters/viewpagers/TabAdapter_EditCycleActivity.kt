@@ -1,4 +1,4 @@
-package com.example.pdca.fragment
+package com.example.pdca.adapters.viewpagers
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,6 +9,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.pdca.R
 import com.example.pdca.databinding.ItemTabLayoutBinding
+import com.example.pdca.fragments.EditActionFragment
+import com.example.pdca.fragments.EditCheckFragment
+import com.example.pdca.fragments.EditDoFragment
+import com.example.pdca.fragments.EditPlanFragment
 import com.google.android.material.tabs.TabLayout
 
 
@@ -37,11 +41,14 @@ class TabAdapter_EditCycleActivity (
     //Fragmentの配列
     override fun getItem(position: Int): Fragment {
         return when (position){
-            0 ->  EditPlanFragment.newInstance(id, number)
-            1 ->  EditDoFragment.newInstance()
+            0 -> EditPlanFragment.newInstance(
+                id,
+                number
+            )
+            1 -> EditDoFragment.newInstance()
             2 -> EditCheckFragment.newInstance()
             3 -> EditActionFragment.newInstance()
-            else ->  EditActionFragment.newInstance()
+            else -> EditActionFragment.newInstance()
         }
     }
 

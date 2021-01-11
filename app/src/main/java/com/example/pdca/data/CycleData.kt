@@ -1,4 +1,4 @@
-package com.example.pdca.roomdata
+package com.example.pdca.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

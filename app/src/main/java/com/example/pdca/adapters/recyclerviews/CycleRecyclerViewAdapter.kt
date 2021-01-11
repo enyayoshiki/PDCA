@@ -1,13 +1,13 @@
-package com.example.pdca.recyclerview_adapter
+package com.example.pdca.adapters.recyclerviews
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pdca.fragment.ContentsDialogFragment
+import com.example.pdca.fragments.ContentsDialogFragment
 import com.example.pdca.R
-import com.example.pdca.roomdata.CycleData
+import com.example.pdca.data.CycleData
 import com.example.pdca.databinding.ItemAllRecyclerviewBinding
 
 class CycleRecyclerViewAdapter(
@@ -23,7 +23,9 @@ class CycleRecyclerViewAdapter(
         val binding = DataBindingUtil.inflate<ItemAllRecyclerviewBinding>(
             layoutInflater, R.layout.item_all_recyclerview, parent, false
         )
-        return ViewHolder(binding)
+        return ViewHolder(
+            binding
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

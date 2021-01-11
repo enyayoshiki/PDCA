@@ -7,7 +7,7 @@
     <data>
         <variable
             name="editcycledata"
-            type="com.example.pdca.viewmodel.EditCycleViewModel"/>
+            type="com.example.pdca.viewmodels.TestEditCycleViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,40 +36,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_c_fragment_edit"
-            android:text="@={editcycledata.editCheck}"
+            android:text="@={editcycledata.cycleData.check}"
             android:inputType="text"
             />
 
 
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/save_button_edit"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="20dp"
-            android:background="@drawable/rounded_save"
-            android:elevation="3dp"
-            />
-
-        <Button
-            android:id="@+id/image_save_buttton_edit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintStart_toStartOf="@id/save_button_edit"
-            app:layout_constraintEnd_toEndOf="@id/save_button_edit"
-            app:layout_constraintTop_toTopOf="@id/save_button_edit"
-            app:layout_constraintBottom_toBottomOf="@id/save_button_edit"
-            android:background="@drawable/icon_save"/>
-
-        <TextView
-            android:id="@+id/test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_c_fragment_edit"
-            android:text="@{editcycledata.editDoing}"/>
+            android:layout_margin="20dp"
+            android:src="@drawable/icon_save"
+            app:backgroundTint="#2F53B3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

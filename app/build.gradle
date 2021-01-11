@@ -64,4 +64,9 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
     //LifeCycle-LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    //koin DBをシングルトンで簡単に作ってくれるやつらしい
+    def koin_version = '1.0.2'
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 }

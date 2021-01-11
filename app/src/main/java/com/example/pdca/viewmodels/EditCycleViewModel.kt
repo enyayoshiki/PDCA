@@ -1,20 +1,20 @@
-package com.example.pdca.viewmodel
+package com.example.pdca.viewmodels
 
 import android.app.AlertDialog
 import android.app.Application
 import android.content.Context
-import android.text.BoringLayout
 import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.pdca.R
-import com.example.pdca.activity.MainActivity
+import com.example.pdca.activities.MainActivity
 import com.example.pdca.application.PdcaApplication
 import com.example.pdca.extention.showToast
-import com.example.pdca.fragment.AddCycleDialogFragment
-import com.example.pdca.roomdata.CycleData
+import com.example.pdca.fragments.AddCycleDialogFragment
+import com.example.pdca.data.CycleData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,28 +32,30 @@ class EditCycleViewModel(
     private var cycleData = CycleData()
     private lateinit var fragmentManager: FragmentManager
 
-    var editPlan = ObservableField("")
-    var editLimit = ObservableField("")
-    var editDoing = ObservableField("")
-    var editCheck = ObservableField("")
-    var editAction = ObservableField("")
+    var editPlan = MutableLiveData("")
+    var editLimit = MutableLiveData("")
+    var editDoing = MutableLiveData("")
+    var editCheck = MutableLiveData("")
+    var editAction = MutableLiveData("")
 
     var isLoading = ObservableBoolean(false)
 
     fun setCycleData(id: Int, number: Int) {
         if (!isLoading.get()) {
-            coroutineScope.launch {
+            CoroutineScope(Dispatchers.Main).launch {
+
                 withContext(Dispatchers.IO) {
+
                     Timber.i("setCycleData")
                     val allData = cycleDao.getAllData()
                     allData.filter { it.cycleid == id && it.number_of_cycle == number }
                             .forEach {
                                 cycleData = it
-                                editPlan.set(it.plan)
-                                editLimit.set(it.limit)
-                                editDoing.set(it.doing)
-                                editCheck.set(it.check)
-                                editAction.set(it.action)
+                                editPlan.postValue(it.plan)
+                                editLimit.postValue(it.limit)
+                                editDoing.postValue(it.doing)
+                                editCheck.postValue(it.check)
+                                editAction.postValue(it.action)
                             }
                 }
             }
@@ -64,17 +66,18 @@ class EditCycleViewModel(
     fun updateCycleDate(isNext: Boolean) {
 
         val editCycleData = cycleData.apply {
-            plan = editPlan.get().toString()
-            limit = editLimit.get().toString()
-            doing = editDoing.get().toString()
-            check = editCheck.get().toString()
-            action = editAction.get().toString()
+            plan = editPlan.value.toString()
+            limit = editLimit.value.toString()
+            doing = editDoing.value.toString()
+            check = editCheck.value.toString()
+            action = editAction.value.toString()
         }
 
         Timber.i("updateCycleDate: editCycleData: $editCycleData")
 
-        coroutineScope.launch {
-            withContext(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
+
+            withContext(Dispatchers.Main) {
                 cycleDao.update(editCycleData)
 
                 if (isNext){
@@ -93,11 +96,11 @@ class EditCycleViewModel(
                 .setMessage(R.string.save_and_next)
                 .setPositiveButton(R.string.ok) { dialog, which ->
                     if (
-                            editPlan.get().toString().isNotEmpty() &&
-                            editLimit.get().toString().isNotEmpty() &&
-                            editDoing.get().toString().isNotEmpty() &&
-                            editCheck.get().toString().isNotEmpty() &&
-                            editAction.get().toString().isNotEmpty()) {
+                            editPlan.value.toString().isNotEmpty() &&
+                            editLimit.value.toString().isNotEmpty() &&
+                            editDoing.value.toString().isNotEmpty() &&
+                            editCheck.value.toString().isNotEmpty() &&
+                            editAction.value.toString().isNotEmpty()) {
 
                         Timber.i("updateCycleDate: makeNextCycle: true")
 

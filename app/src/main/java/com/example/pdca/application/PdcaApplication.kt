@@ -1,7 +1,7 @@
 package com.example.pdca.application
 
 import android.app.Application
-import com.example.pdca.roomdata.CycleDatabase
+import com.example.pdca.data.CycleDatabase
 import timber.log.Timber
 
 class PdcaApplication : Application() {

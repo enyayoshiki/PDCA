@@ -1,9 +1,10 @@
-package com.example.pdca.viewmodel
+package com.example.pdca.viewmodels
 
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.pdca.CycleDataRepository
 import kotlinx.coroutines.CoroutineScope
 
 class ViewModelFactory_CycleList (
@@ -30,3 +31,13 @@ class ViewModelFactory_EditCycle(
         ) as T
     }
 }
+
+//class TestViewModelFactory(
+//    cycleDataRepository: CycleDataRepository
+//): ViewModelProvider.Factory {
+//    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+//        return TestEditCycleViewModel(
+//
+//        ) as T
+//    }
+//}

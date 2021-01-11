@@ -1,21 +1,14 @@
-package com.example.pdca.activity
+package com.example.pdca.activities
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.pdca.fragment.TabAdapter_EditCycleActivity
+import com.example.pdca.adapters.viewpagers.TabAdapter_EditCycleActivity
 import com.example.pdca.R
-import com.example.pdca.application.PdcaApplication
 import com.example.pdca.databinding.ActivityEditBinding
-import com.example.pdca.roomdata.CycleData
 import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 class EditCycleActivity : AppCompatActivity() {
 
@@ -31,7 +24,13 @@ class EditCycleActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit)
 
-        val adapter = TabAdapter_EditCycleActivity(supportFragmentManager, this, cycleId, cycleNumber)
+        val adapter =
+            TabAdapter_EditCycleActivity(
+                supportFragmentManager,
+                this,
+                cycleId,
+                cycleNumber
+            )
         binding.viewPagerEdit.adapter = adapter
 
 

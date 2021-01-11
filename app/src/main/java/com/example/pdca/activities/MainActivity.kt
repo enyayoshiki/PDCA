@@ -1,4 +1,4 @@
-package com.example.pdca.activity
+package com.example.pdca.activities
 
 import android.content.Context
 import android.content.Intent
@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.pdca.R
 import com.example.pdca.databinding.ActivityMainBinding
-import com.example.pdca.fragment.AddCycleDialogFragment
-import com.example.pdca.fragment.TabAdapter_MainActivity
-import com.example.pdca.roomdata.CycleData
+import com.example.pdca.fragments.AddCycleDialogFragment
+import com.example.pdca.adapters.viewpagers.TabAdapter_MainActivity
+import com.example.pdca.data.CycleData
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val adapter = TabAdapter_MainActivity(supportFragmentManager, this)
+        val adapter =
+            TabAdapter_MainActivity(
+                supportFragmentManager,
+                this
+            )
 
         binding.viewPagerAllCycle.adapter = adapter
 

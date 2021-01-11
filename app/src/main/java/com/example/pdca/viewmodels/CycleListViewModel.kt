@@ -1,9 +1,9 @@
-package com.example.pdca.viewmodel
+package com.example.pdca.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.pdca.application.PdcaApplication
-import com.example.pdca.roomdata.CycleData
+import com.example.pdca.data.CycleData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
