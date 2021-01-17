@@ -61,15 +61,26 @@
                 android:text="@string/limit_add_fragment"
                 />
 
-            <EditText
-                android:id="@+id/edit_limit_fragment_add_dialog"
+<!--            <EditText-->
+<!--                android:id="@+id/edit_limit_fragment_add_dialog"-->
+<!--                android:layout_width="250dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/limit_fragment_add_dialog"-->
+<!--                android:hint="@string/hint_edit_add_fragment"-->
+<!--                />-->
+
+
+            <TextView
+                android:id="@+id/input_date_text_view"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
+                android:gravity="start|center"
+                android:hint="@string/hint_edit_add_fragment"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/limit_fragment_add_dialog"
-                android:hint="@string/hint_edit_add_fragment"
-                />
+                app:layout_constraintTop_toBottomOf="@id/limit_fragment_add_dialog" />
 
 
 
