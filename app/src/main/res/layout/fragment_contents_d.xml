@@ -13,30 +13,29 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_c">
+        android:background="@color/color_d">
+
         <TextView
-            android:id="@+id/title_c_fragment_contents"
+            android:id="@+id/title_d_fragment_contents"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="10dp"
-            android:text="@string/title_c"
+            android:text="@string/title_d"
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/edit_c_fragment_edit"
+            android:id="@+id/edit_d_fragment_edit"
             android:layout_width="300dp"
             android:layout_height="300dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_c_fragment_contents"
+            app:layout_constraintTop_toBottomOf="@id/title_d_fragment_contents"
             android:layout_marginTop="20dp"
-            android:background="@color/white"
-            android:text="@{contentsdata.contentsCycleData.check}"
-            />
-
+            android:text="@{contentsdata.contentsCycleData.doing}"
+            android:background="@color/white"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,6 +86,9 @@
                 android:text="@string/button_next_cycle_contents"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

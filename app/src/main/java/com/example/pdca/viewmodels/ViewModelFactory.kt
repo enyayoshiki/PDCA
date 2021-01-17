@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.pdca.CycleDataRepository
 import kotlinx.coroutines.CoroutineScope
 
 class ViewModelFactory_CycleList (

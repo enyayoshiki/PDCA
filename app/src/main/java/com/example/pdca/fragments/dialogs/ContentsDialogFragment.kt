@@ -1,23 +1,26 @@
-package com.example.pdca.fragments
+package com.example.pdca.fragments.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.pdca.activities.ContensActivity
+import com.example.pdca.activities.ContentsActivity
 import com.example.pdca.activities.EditCycleActivity
 import com.example.pdca.R
 import com.example.pdca.data.CycleData
 import com.example.pdca.viewmodels.CycleListViewModel
 import com.example.pdca.databinding.ContentsDialogBinding
 import com.example.pdca.viewmodels.ViewModelFactory_CycleList
+import kotlinx.coroutines.*
+import timber.log.Timber
 
 
-class ContentsDialogFragment(private val cycleData: CycleData) : DialogFragment() {
+class ContentsDialogFragment(private val data: CycleData) : DialogFragment() {
 
 
     private val viewModel: CycleListViewModel by viewModels {
@@ -26,32 +29,39 @@ class ContentsDialogFragment(private val cycleData: CycleData) : DialogFragment(
                 requireContext()
         )
     }
+
+    lateinit var binding: ContentsDialogBinding
+
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        val binding = DataBindingUtil.inflate<ContentsDialogBinding>(
-                LayoutInflater.from(activity),
+        binding = DataBindingUtil.inflate<ContentsDialogBinding>(
+                LayoutInflater.from(requireContext()),
                 R.layout.contents_dialog,
                 null,
                 false
         )
 
-        val lastCycleData = viewModel.lastCycleList.value?.get(0)
-        var cycleNumber = cycleData.number_of_cycle
+        viewModel.apply {
+            cycleDataInViewModel = data
+            loadLastCycleData(data.baseId, data.number_of_cycle-1)
+            Timber.i("lastCycleData: before ${viewModel.lastCycleData}")
+        }
 
-        viewModel.loadLastCycleData(cycleData.cycleid, cycleNumber--)
-        binding.cycledata = cycleData
-        binding.lastcycledata = lastCycleData
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(200L)
+            binding.viewmodel = viewModel
+        }
 
         val bindingView = binding.root
 
         return AlertDialog.Builder(requireContext())
                 .setView(bindingView) // （3） 作成したビューをコンテンツ領域に設定
                 .setPositiveButton(R.string.contents_induction) { dialog, which ->
-                    ContensActivity.startContents(requireActivity(), cycleData.cycleid, cycleData.number_of_cycle)
-
+                    ContentsActivity.startContents(requireActivity(), data.cycleid, data.number_of_cycle)
                 }
                 .setNeutralButton(R.string.edit_button) { dialog, which ->
-                    EditCycleActivity.startEditCycle(requireActivity(), cycleData.cycleid, cycleData.number_of_cycle)
+                    EditCycleActivity.startEditCycle(requireActivity(), data.cycleid, data.number_of_cycle)
                 }
                 .create()
     }

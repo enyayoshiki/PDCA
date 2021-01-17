@@ -9,11 +9,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.pdca.R
 import com.example.pdca.activities.MainActivity
+import com.example.pdca.data.CycleData
 import com.example.pdca.databinding.FragmentEditABinding
 import com.example.pdca.databinding.FragmentEditCBinding
 import com.example.pdca.databinding.FragmentEditDBinding
 import com.example.pdca.databinding.FragmentEditPBinding
-import com.example.pdca.viewmodels.EditCycleViewModel
+import com.example.pdca.extention.visible
+import com.example.pdca.fragments.dialogs.AddCycleDialogFragment
 import com.example.pdca.viewmodels.TestEditCycleViewModel
 import timber.log.Timber
 
@@ -21,12 +23,6 @@ class EditPlanFragment : Fragment(R.layout.fragment_edit_p) {
 
     //Fragment間でもviewModelを維持できるらしい(activityViewModels)
     private val viewModel: TestEditCycleViewModel by activityViewModels()
-//    {
-//        ViewModelFactory_EditCycle(
-//                lifecycleScope,
-//                requireContext()
-//        )
-//    }
 
     private lateinit var binding: FragmentEditPBinding
 
@@ -38,25 +34,6 @@ class EditPlanFragment : Fragment(R.layout.fragment_edit_p) {
         val id = bundle?.getInt(ID) ?: 0
         val number = bundle?.getInt(NUMBER) ?: 0
 
-        //すでに存在しているデータを表示させる
-        viewModel.apply {
-            setCycleData(id, number)
-            editPlan.observe(viewLifecycleOwner, Observer {
-                it.apply {
-                    isNext =
-                        editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
-                }
-                Timber.i("viewModel isNext : $isNext")
-            })
-            editLimit.observe(viewLifecycleOwner, Observer {
-                it.apply {
-                    isNext =
-                        editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
-                }
-                Timber.i("viewModel isNext : $isNext")
-            })
-        }
-
         binding = DataBindingUtil.bind(view) ?: return
 
         binding.apply {
@@ -67,9 +44,29 @@ class EditPlanFragment : Fragment(R.layout.fragment_edit_p) {
                 viewModel.updateCycleDate()
                 Toast.makeText(context, R.string.save_text, Toast.LENGTH_SHORT).show()
                 MainActivity.startManiActivity(requireActivity())
-
+            }
+            nextCycleButtonFragmentEdit.setOnClickListener {
+                AddCycleDialogFragment(
+                    CycleData(),
+                    true
+                ).show(childFragmentManager, "")
             }
         }
+
+        viewModel.apply {
+            //すでに存在しているデータを表示させる
+            setCycleData(id, number)
+//            editPlan.observe(viewLifecycleOwner, Observer {
+//                isNext.postValue(it.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty())
+//            })
+//            editLimit.observe(viewLifecycleOwner, Observer {
+//                isNext.postValue(editPlan.value!!.isNotEmpty() && it.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty())
+//            })
+            isNext.observe(viewLifecycleOwner, Observer {
+                binding.nextCycleButtonFragmentEdit.visible(isNext.value ?: false)
+            })
+        }
+
     }
 
     companion object {
@@ -94,12 +91,6 @@ class EditPlanFragment : Fragment(R.layout.fragment_edit_p) {
 class EditDoFragment : Fragment(R.layout.fragment_edit_d) {
 
     private val viewModel: TestEditCycleViewModel by activityViewModels()
-//    {
-//        ViewModelFactory_EditCycle(
-//                lifecycleScope,
-//                requireContext()
-//        )
-//    }
 
     private lateinit var binding: FragmentEditDBinding
 
@@ -119,15 +110,20 @@ class EditDoFragment : Fragment(R.layout.fragment_edit_d) {
                 Toast.makeText(context, R.string.save_text, Toast.LENGTH_SHORT).show()
                 MainActivity.startManiActivity(requireActivity())
             }
+            nextCycleButtonFragmentEdit.setOnClickListener {
+                AddCycleDialogFragment(
+                    viewModel.nextCycle(),
+                    true
+                ).show(childFragmentManager, "")
+            }
         }
 
         viewModel.apply {
-            editDoing.observe(viewLifecycleOwner, Observer {
-                it.apply {
-                    isNext =
-                        editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
-                }
-                Timber.i("viewModel isNext : $isNext")
+//            editDoing.observe(viewLifecycleOwner, Observer {
+//                isNext.postValue(editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && it.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty())
+//            })
+            isNext.observe(viewLifecycleOwner, Observer {
+                binding.nextCycleButtonFragmentEdit.visible(isNext.value ?: false)
             })
         }
     }
@@ -145,12 +141,6 @@ class EditDoFragment : Fragment(R.layout.fragment_edit_d) {
 class EditCheckFragment : Fragment(R.layout.fragment_edit_c) {
 
     private val viewModel: TestEditCycleViewModel by activityViewModels()
-//    {
-//        ViewModelFactory_EditCycle(
-//                lifecycleScope,
-//                requireContext()
-//        )
-//    }
 
     private lateinit var binding: FragmentEditCBinding
 
@@ -169,14 +159,21 @@ class EditCheckFragment : Fragment(R.layout.fragment_edit_c) {
                 MainActivity.startManiActivity(requireActivity())
             }
 
-            viewModel.apply {
+            nextCycleButtonFragmentEdit.setOnClickListener {
+                AddCycleDialogFragment(
+                    viewModel.nextCycle(),
+                    true
+                ).show(childFragmentManager, "")
+            }
 
-                editCheck.observe(viewLifecycleOwner, Observer {
-                    it.apply {
-                        isNext =
-                            editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
-                    }
-                    Timber.i("viewModel isNext : $isNext")
+
+            viewModel.apply {
+//
+//                editCheck.observe(viewLifecycleOwner, Observer {
+//                    isNext.postValue(editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && it.isNotEmpty() && editAction.value!!.isNotEmpty())
+//                })
+                isNext.observe(viewLifecycleOwner, Observer {
+                    binding.nextCycleButtonFragmentEdit.visible(isNext.value ?: false)
                 })
             }
         }
@@ -208,22 +205,29 @@ class EditActionFragment : Fragment(R.layout.fragment_edit_a) {
             lifecycleOwner = viewLifecycleOwner
 
             saveButtonEdit.setOnClickListener {
-//                viewModel.updateCycleDate()
-//                Toast.makeText(context, R.string.save_text, Toast.LENGTH_SHORT).show()
-//                MainActivity.startManiActivity(requireActivity())
+                viewModel.updateCycleDate()
+                Toast.makeText(context, R.string.save_text, Toast.LENGTH_SHORT).show()
+                MainActivity.startManiActivity(requireActivity())
             }
+            nextCycleButtonFragmentEdit.setOnClickListener {
+                AddCycleDialogFragment(
+                    viewModel.nextCycle(),
+                    true
+                ).show(childFragmentManager, "")
+            }        }
+
+
+
 
             viewModel.apply {
-                editAction.observe(viewLifecycleOwner, Observer {
-                    it.apply {
-                        isNext =
-                            editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty()
-                    }
-                    Timber.i("viewModel isNext : $isNext")
+//                editAction.observe(viewLifecycleOwner, Observer {
+//                    isNext.postValue(editPlan.value!!.isNotEmpty() && editLimit.value!!.isNotEmpty() && editDoing.value!!.isNotEmpty() && editCheck.value!!.isNotEmpty() && editAction.value!!.isNotEmpty())
+//                })
+                isNext.observe(viewLifecycleOwner, Observer {
+                    binding.nextCycleButtonFragmentEdit.visible(isNext.value ?: false)
                 })
             }
         }
-    }
 
 
     companion object {

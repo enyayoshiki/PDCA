@@ -6,11 +6,8 @@
 
     <data>
         <variable
-            name="cycledata"
-            type="com.example.pdca.data.CycleData" />
-        <variable
-            name="lastcycledata"
-            type="com.example.pdca.data.CycleData" />
+            name="viewmodel"
+            type="com.example.pdca.viewmodels.CycleListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +48,7 @@
                 app:layout_constraintStart_toEndOf="@id/icon_p_dialog"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="10dp"
-                android:text="@{cycledata.plan}" />
+                android:text="@{viewmodel.cycleDataInViewModel.plan}" />
 
             <TextView
                 android:id="@+id/title_limit_dialog"
@@ -70,7 +67,7 @@
                 app:layout_constraintStart_toEndOf="@id/title_limit_dialog"
                 app:layout_constraintTop_toBottomOf="@id/sideLine_p_between_data_dialog"
                 android:layout_margin="10dp"
-                android:text="@{cycledata.limit}"/>
+                android:text="@{viewmodel.cycleDataInViewModel.limit}"/>
 
             <TextView
                 android:id="@+id/title_cycleNumber_dialog"
@@ -90,7 +87,7 @@
                 app:layout_constraintEnd_toEndOf="@id/sideLine_p_between_data_dialog"
                 app:layout_constraintTop_toTopOf="@id/sideLine_p_between_data_dialog"
                 android:layout_margin="10dp"
-                android:text="@{Integer.toString(cycledata.number_of_cycle)}"/>
+                android:text="@{Integer.toString(viewmodel.cycleDataInViewModel.number_of_cycle)}"/>
 
             <View
                 android:id="@+id/sideLine_p_between_data_dialog"
@@ -131,7 +128,7 @@
                 app:layout_constraintTop_toTopOf="@id/icon_d_dialog"
                 android:paddingStart="10dp"
                 android:paddingEnd="30dp"
-                android:text="@{cycledata.doing}"
+                android:text="@{viewmodel.cycleDataInViewModel.doing}"
                 android:maxLength="80"/>
 
             <View
@@ -181,7 +178,7 @@
                     app:layout_constraintTop_toTopOf="@id/icon_p_lastCycle_dialog"
                     android:layout_marginStart="10dp"
                     android:paddingEnd="30dp"
-                    android:text="@{lastcycledata.plan}"
+                    android:text="@{viewmodel.lastCycleData.plan}"
                     android:maxLength="60"/>
 
                 <TextView
@@ -207,7 +204,7 @@
                     android:paddingEnd="30dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="50dp"
-                    android:text="@{lastcycledata.check}"
+                    android:text="@{viewmodel.lastCycleData.plan}"
                     android:maxLength="30"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

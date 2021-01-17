@@ -16,7 +16,7 @@ import com.example.pdca.fragments.EditPlanFragment
 import com.google.android.material.tabs.TabLayout
 
 
-class TabAdapter_EditCycleActivity (
+class EditCycleActivityViewPagerAdapter (
         fm: FragmentManager,
         private val context: Context,
         private val id: Int,

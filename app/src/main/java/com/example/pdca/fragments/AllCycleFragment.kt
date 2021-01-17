@@ -14,6 +14,7 @@ import com.example.pdca.data.CycleData
 import com.example.pdca.viewmodels.CycleListViewModel
 import com.example.pdca.databinding.FragmentAllCycleBinding
 import com.example.pdca.viewmodels.ViewModelFactory_CycleList
+import timber.log.Timber
 
 class AllCycleFragment: Fragment(R.layout.fragment_all_cycle) {
 
@@ -42,6 +43,7 @@ class AllCycleFragment: Fragment(R.layout.fragment_all_cycle) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Timber.i("onViewCreated AllCycleragment")
         val bundle = arguments
         val tag = bundle?.getInt(TAG) ?: 0
 
@@ -82,6 +84,16 @@ class AllCycleFragment: Fragment(R.layout.fragment_all_cycle) {
         })
 
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.i("onResume AllCycleFragment")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.i("onStart AllCycleFragment")
     }
 
     companion object {

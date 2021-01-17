@@ -1,4 +1,4 @@
-package com.example.pdca.fragments
+package com.example.pdca.fragments.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -16,8 +16,9 @@ import com.example.pdca.extention.showToast
 import com.example.pdca.data.CycleData
 import com.example.pdca.viewmodels.CycleListViewModel
 import com.example.pdca.viewmodels.ViewModelFactory_CycleList
+import timber.log.Timber
 
-class AddCycleDialogFragment(private val cycleData: CycleData) : DialogFragment(){
+class AddCycleDialogFragment(private val cycleData: CycleData, private val isNext: Boolean) : DialogFragment(){
 
 
     private val viewModel: CycleListViewModel by viewModels {
@@ -50,12 +51,22 @@ class AddCycleDialogFragment(private val cycleData: CycleData) : DialogFragment(
                         Toast.makeText(activity, R.string.alart_edit_both, Toast.LENGTH_SHORT).show()
                         return@setPositiveButton
                     } else {
-                        viewModel.insertCycleData(CycleData().apply {
-                            plan = new_plan
-                            limit = limit_plan
-                            number_of_cycle = cycleData.number_of_cycle++
-                            baseId = cycleData.baseId
-                        })
+                        viewModel.apply {
+                            insertCycleData(CycleData().apply {
+                                plan = new_plan
+                                limit = limit_plan
+                                number_of_cycle = cycleData.number_of_cycle+1
+                                if (isNext) {
+                                    baseId = cycleData.baseId
+                                    Timber.i("isNext false baseId: $baseId")
+                                    Timber.i("isNext false numberCycle: $number_of_cycle")
+                                } else {
+                                    Timber.i("isNext true baseId: $baseId")
+                                    Timber.i("isNext true numberCycle: $number_of_cycle")
+                                }
+                            })
+                            if (isNext) updateCycleData(cycleData)
+                        }
                         MainActivity.startManiActivity(requireContext())
                         showToast(requireContext(), R.string.excute_add_new_cycle)
                     }

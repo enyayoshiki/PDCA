@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.pdca.R
 import com.example.pdca.fragments.AllCycleFragment
 
-class TabAdapter_MainActivity (fm: FragmentManager, private val context: Context) :
+class MainActivityViewPagerAdapter (fm: FragmentManager, private val context: Context) :
     FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     //タイトルの配列

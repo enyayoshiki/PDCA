@@ -7,21 +7,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.pdca.R
 import com.example.pdca.databinding.ActivityMainBinding
-import com.example.pdca.fragments.AddCycleDialogFragment
-import com.example.pdca.adapters.viewpagers.TabAdapter_MainActivity
+import com.example.pdca.fragments.dialogs.AddCycleDialogFragment
+import com.example.pdca.adapters.viewpagers.MainActivityViewPagerAdapter
 import com.example.pdca.data.CycleData
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Timber.i("onCreate MainActivity")
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val adapter =
-            TabAdapter_MainActivity(
+            MainActivityViewPagerAdapter(
                 supportFragmentManager,
                 this
             )
@@ -29,13 +31,26 @@ class MainActivity : AppCompatActivity() {
         binding.viewPagerAllCycle.adapter = adapter
 
         binding.addCycleButton.setOnClickListener {
-            val manager = supportFragmentManager
-            AddCycleDialogFragment(CycleData()).show(manager, "")
+            AddCycleDialogFragment(
+                CycleData(),
+                false
+            ).show(supportFragmentManager, "")
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.i("onStart MainActivity")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.i("onResume MainActivity")
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        Timber.i("onDestroy MainActivity")
         binding.unbind()
     }
 

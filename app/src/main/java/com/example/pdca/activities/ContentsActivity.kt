@@ -5,27 +5,30 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.pdca.adapters.viewpagers.EditCycleActivityViewPagerAdapter
 import com.example.pdca.R
-import com.example.pdca.databinding.ActivityEditBinding
+import com.example.pdca.adapters.viewpagers.ContentsActivityViewPagerAdapter
+import com.example.pdca.databinding.ActivityContentsBinding
 import com.google.android.material.tabs.TabLayout
+import timber.log.Timber
 
-class EditCycleActivity : AppCompatActivity() {
+class ContentsActivity : AppCompatActivity() {
 
-
-    private lateinit var binding: ActivityEditBinding
+    private lateinit var binding: ActivityContentsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Timber.i("ContentsActivity")
 
-        val cycleId = intent.getIntExtra(CYCLEID, 0)
-        val cycleNumber = intent.getIntExtra(CYCLENUMBER, 0)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_edit)
+        val cycleId = intent.getIntExtra(EditCycleActivity.CYCLEID, 0)
+        val cycleNumber = intent.getIntExtra(EditCycleActivity.CYCLENUMBER, 0)
+
+        Timber.i("getInt: $cycleId")
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_contents)
 
         val adapter =
-            EditCycleActivityViewPagerAdapter(
+            ContentsActivityViewPagerAdapter(
                 supportFragmentManager,
                 this,
                 cycleId,
@@ -33,20 +36,19 @@ class EditCycleActivity : AppCompatActivity() {
             )
 
         binding.apply {
-            viewPagerEdit.adapter = adapter
+            viewPagerContents.adapter = adapter
             //        ここで細かいタブ設定(getTabView)
-            tabLayoutEdit.setupWithViewPager(binding.viewPagerEdit)
+            tabLayoutContents.setupWithViewPager(binding.viewPagerContents)
             for (i in 0 until adapter.count) {
-                val tab: TabLayout.Tab = binding.tabLayoutEdit.getTabAt(i)!!
-                tab.customView = adapter.getTabView(binding.tabLayoutEdit, i)
+                val tab: TabLayout.Tab = binding.tabLayoutContents.getTabAt(i)!!
+                tab.customView = adapter.getTabView(binding.tabLayoutContents, i)
             }
             backButtonEdit.setOnClickListener{
                 MainActivity.startManiActivity(applicationContext)
             }
-            goContentsButtonEdit.setOnClickListener{
-                ContentsActivity.startContents(applicationContext, cycleId, cycleNumber)
-            }
         }
+
+
     }
 
     override fun onDestroy() {
@@ -58,8 +60,9 @@ class EditCycleActivity : AppCompatActivity() {
         const val CYCLEID = "CYCLEID"
         const val CYCLENUMBER = "CYCLENUMBER"
 
-        fun startEditCycle(activity: Context, cycleId: Int, cycleNumber: Int) {
-            val intent = Intent(activity, EditCycleActivity::class.java)
+
+        fun startContents(activity: Context, cycleId: Int, cycleNumber: Int) {
+            val intent = Intent(activity, ContentsActivity::class.java)
             intent.putExtra(CYCLEID, cycleId)
             intent.putExtra(CYCLENUMBER, cycleNumber)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)

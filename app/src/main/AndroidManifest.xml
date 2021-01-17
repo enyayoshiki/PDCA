@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.EditCycleActivity"/>
-        <activity android:name=".activities.ContensActivity"/>
+        <activity android:name=".activities.ContentsActivity"/>
     </application>
 
 </manifest>

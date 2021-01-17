@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pdca.fragments.ContentsDialogFragment
+import com.example.pdca.fragments.dialogs.ContentsDialogFragment
 import com.example.pdca.R
 import com.example.pdca.data.CycleData
 import com.example.pdca.databinding.ItemAllRecyclerviewBinding
@@ -31,7 +31,8 @@ class CycleRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(cycleList[position])
         holder.contentsButton.setOnClickListener {
-            ContentsDialogFragment(cycleList[position]).show(manager, "")
+            ContentsDialogFragment(cycleList[position])
+                .show(manager, "")
         }
     }
 

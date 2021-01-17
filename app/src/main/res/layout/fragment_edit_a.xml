@@ -33,39 +33,53 @@
             android:layout_height="200dp"
             android:layout_marginTop="20dp"
             android:background="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/nextCycle_button_fragment_edit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_a_fragment_edit"
+            app:layout_constraintBottom_toTopOf="@id/save_button_edit"
             android:text="@={editcycledata.editAction}"
             android:inputType="text"
             />
 
-        <Button
-            android:id="@+id/nextCycle_button_fragment_edit"
+
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/rounded_next_cycle"
-            android:padding="10dp"
-            android:text="@string/button_next_cycle_edit"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/save_button_edit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_a_fragment_edit" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/save_button_edit"
+            android:text="@string/title_save_button"
+            android:textSize="20sp"
+            />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/save_button_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:src="@drawable/icon_save"
             app:backgroundTint="#2F53B3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/nextCycle_button_fragment_edit"
+            android:layout_marginBottom="30dp"
+            />
+
+        <Button
+            android:id="@+id/nextCycle_button_fragment_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_next_cycle"
+            android:text="@string/button_next_cycle_edit"
+            android:textSize="20sp"
+            />
+
+
 
 
 

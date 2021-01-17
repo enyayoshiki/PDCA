@@ -8,13 +8,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.pdca.R
 import com.example.pdca.activities.MainActivity
 import com.example.pdca.application.PdcaApplication
-import com.example.pdca.extention.showToast
-import com.example.pdca.fragments.AddCycleDialogFragment
 import com.example.pdca.data.CycleData
+import com.example.pdca.extention.showToast
+import com.example.pdca.fragments.dialogs.AddCycleDialogFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -81,7 +80,10 @@ class EditCycleViewModel(
                 cycleDao.update(editCycleData)
 
                 if (isNext){
-                    AddCycleDialogFragment(editCycleData).show(fragmentManager, "")
+                    AddCycleDialogFragment(
+                        editCycleData,
+                        false
+                    ).show(fragmentManager, "")
                 }
                 else MainActivity.startManiActivity(context)
             }
