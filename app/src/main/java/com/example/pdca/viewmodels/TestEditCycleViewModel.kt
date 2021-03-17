@@ -92,7 +92,7 @@ class TestEditCycleViewModel : ViewModel() {
     fun nextCycle() : CycleData{
         var baseId = 0
 
-        if (numberCycle == 1) baseId = cycleData.cycleid else baseId = cycleData.baseId
+        baseId = if (numberCycle == 1) cycleData.cycleid else cycleData.baseId
         return  CycleData(
             cycleid = cycleData.cycleid,
             plan = editPlan.value ?: "",
@@ -101,7 +101,7 @@ class TestEditCycleViewModel : ViewModel() {
             check = editCheck.value ?: "",
             action = editAction.value ?: "",
             number_of_cycle = numberCycle,
-            finishcycle = 1,
+            finishcycle = true,
             baseId = baseId
         )
         //(finishcycleを1にして完了したことにする)

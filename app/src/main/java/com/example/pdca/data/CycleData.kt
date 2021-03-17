@@ -13,6 +13,6 @@ data class CycleData(
         var check: String = "",
         var action: String = "",
         var number_of_cycle: Int = 0,
-        var finishcycle: Int = 0,
+        var finishcycle: Boolean = false,
         var baseId: Int = 0
 )

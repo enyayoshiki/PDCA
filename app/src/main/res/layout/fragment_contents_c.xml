@@ -23,12 +23,12 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="10dp"
             android:text="@string/title_c"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/edit_c_fragment_edit"
             android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_height="100dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_c_fragment_contents"
@@ -44,7 +44,7 @@
             app:layout_constraintStart_toEndOf="@id/number_of_cycle_contents"
             app:layout_constraintBottom_toTopOf="@id/button_container_contents"
             android:text="@string/contents_cycle_number"
-            android:textSize="30sp"
+            android:textSize="20sp"
             />
 
         <TextView
@@ -56,7 +56,7 @@
             app:layout_constraintBottom_toTopOf="@id/button_container_contents"
             android:text="@{Integer.toString(contentsdata.contentsCycleData.number_of_cycle)}"
             android:textStyle="bold"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/button_container_contents"
@@ -69,7 +69,7 @@
             <Button
                 android:id="@+id/beforeCycle_button_contents"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
             <Button
                 android:id="@+id/nextCycle_button_contents"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -24,22 +24,23 @@ class EditCycleActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit)
 
-        val adapter =
-            EditCycleActivityViewPagerAdapter(
-                supportFragmentManager,
-                this,
-                cycleId,
-                cycleNumber
-            )
+
+        //ViewPagerAdapterの設定
+        val adapter = setViewPagerAdapter(cycleId, cycleNumber)
+
+//        val adapter =
+//            EditCycleActivityViewPagerAdapter(
+//                supportFragmentManager,
+//                this,
+//                cycleId,
+//                cycleNumber
+//            )
 
         binding.apply {
             viewPagerEdit.adapter = adapter
             //        ここで細かいタブ設定(getTabView)
-            tabLayoutEdit.setupWithViewPager(binding.viewPagerEdit)
-            for (i in 0 until adapter.count) {
-                val tab: TabLayout.Tab = binding.tabLayoutEdit.getTabAt(i)!!
-                tab.customView = adapter.getTabView(binding.tabLayoutEdit, i)
-            }
+            setTabLayout(adapter)
+
             backButtonEdit.setOnClickListener{
                 MainActivity.startManiActivity(applicationContext)
             }
@@ -48,6 +49,26 @@ class EditCycleActivity : AppCompatActivity() {
             }
         }
     }
+
+    //ViewPagerAdapterの設定
+    private fun setViewPagerAdapter(cycleId: Int, cycleNumber: Int): EditCycleActivityViewPagerAdapter{
+         return EditCycleActivityViewPagerAdapter(
+            supportFragmentManager,
+            this,
+            cycleId,
+            cycleNumber
+        )
+    }
+    //TabLayoutの設定
+    private fun setTabLayout(adapter: EditCycleActivityViewPagerAdapter){
+        binding.tabLayoutEdit.setupWithViewPager(binding.viewPagerEdit)
+        for (i in 0 until adapter.count) {
+            val tab: TabLayout.Tab = binding.tabLayoutEdit.getTabAt(i)!!
+            tab.customView = adapter.getTabView(binding.tabLayoutEdit, i)
+        }
+    }
+
+
 
     override fun onDestroy() {
         super.onDestroy()

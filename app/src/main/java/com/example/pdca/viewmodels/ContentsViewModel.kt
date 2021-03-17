@@ -34,7 +34,7 @@ class ContentsViewModel : ViewModel() {
                     .forEach { cycleData ->
                         contentsCycleData.postValue(cycleData)
 
-                        if (cycleData.number_of_cycle == 1 && cycleData.finishcycle == 0) {
+                        if (cycleData.number_of_cycle == 1 && !cycleData.finishcycle) {
                             return@launch
                         } else {
                             filterCycleDataList.postValue(cycleDataList.filter { it.baseId == cycleData.baseId } as MutableList)

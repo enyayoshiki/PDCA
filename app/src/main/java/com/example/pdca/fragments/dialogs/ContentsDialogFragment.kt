@@ -4,19 +4,21 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.pdca.R
 import com.example.pdca.activities.ContentsActivity
 import com.example.pdca.activities.EditCycleActivity
-import com.example.pdca.R
 import com.example.pdca.data.CycleData
-import com.example.pdca.viewmodels.CycleListViewModel
 import com.example.pdca.databinding.ContentsDialogBinding
+import com.example.pdca.viewmodels.CycleListViewModel
 import com.example.pdca.viewmodels.ViewModelFactory_CycleList
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 

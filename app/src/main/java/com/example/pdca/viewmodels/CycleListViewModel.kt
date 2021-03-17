@@ -28,16 +28,16 @@ class CycleListViewModel(
             //0は未解決、1は解決済み
             if (tag == 0) {
                 cycleListResponse.forEach {
-                    //"finishcycle"が"0"なら未解決のもの
-                    if (it.finishcycle == 0) {
+                    //"finishcycle"がfalseなら未解決のもの
+                    if (!it.finishcycle) {
                         cycleListSnapshot.add(it)
                     }
                 }
                 cycleList.postValue(cycleListSnapshot)
             } else {
                 cycleListResponse.forEach {
-                    //"finishcycle"が"0"なら未解決のもの
-                    if (it.finishcycle == 1) {
+                    //"finishcycle"がtrueなら解決のもの
+                    if (it.finishcycle) {
                         cycleListSnapshot.add(it)
                     }
                 }

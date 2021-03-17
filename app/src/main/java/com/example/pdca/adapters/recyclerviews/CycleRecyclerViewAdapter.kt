@@ -31,8 +31,7 @@ class CycleRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(cycleList[position])
         holder.contentsButton.setOnClickListener {
-            ContentsDialogFragment(cycleList[position])
-                .show(manager, "")
+            ContentsDialogFragment(cycleList[position]).show(manager, "")
         }
     }
 

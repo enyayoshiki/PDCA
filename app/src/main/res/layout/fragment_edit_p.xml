@@ -26,14 +26,14 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="10dp"
             android:text="@string/title_p"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textColor="@color/white"
             />
 
         <EditText
             android:id="@+id/edit_p_fragment_edit"
             android:layout_width="300dp"
-            android:layout_height="110dp"
+            android:layout_height="60dp"
             app:layout_constraintStart_toStartOf="@id/title_p_fragment_edit"
             app:layout_constraintEnd_toEndOf="@id/title_p_fragment_edit"
             app:layout_constraintTop_toBottomOf="@id/title_p_fragment_edit"
@@ -52,14 +52,14 @@
             app:layout_constraintTop_toBottomOf="@id/edit_p_fragment_edit"
             android:layout_marginTop="20dp"
             android:text="@string/title_limit"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textColor="@color/white"
             />
 
         <EditText
             android:id="@+id/edit_limit_fragment_edit"
             android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             app:layout_constraintStart_toStartOf="@id/title_p_fragment_edit"
             app:layout_constraintEnd_toEndOf="@id/title_p_fragment_edit"
             app:layout_constraintTop_toBottomOf="@id/title_limit_fragment_edit"
@@ -76,7 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/save_button_edit"
             android:text="@string/title_save_button"
-            android:textSize="20sp"
+            android:textSize="15sp"
             />
 
 
@@ -94,15 +94,16 @@
 
         <Button
             android:id="@+id/nextCycle_button_fragment_edit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:padding="10dp"
             android:layout_margin="10dp"
             android:background="@drawable/rounded_next_cycle"
             android:text="@string/button_next_cycle_edit"
-            android:textSize="20sp"
+            android:textSize="15sp"
             />
 
 
